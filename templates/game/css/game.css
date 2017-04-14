@@ -14,9 +14,15 @@ body {
     -o-background-size: cover;
 }
 
+.question {
+    margin-bottom: 25px;
+}
+
 
 .portfolio-item {
+    margin-top: 25px;
     margin-bottom: 25px;
+    margin-left: 100px;
 }
 
 footer {
