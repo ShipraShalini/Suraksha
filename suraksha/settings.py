@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'geoposition',
+    'game',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyB4zkfSadbgRyxG0xyhKaQ5aXYM-jFkpNc'

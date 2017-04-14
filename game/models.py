@@ -14,18 +14,23 @@ class User(models.Model):
         ('Other', 'Other'),
         ('Unspecified', "Don't want to disclose")
     )
-    username = models.CharField(max_length=120)
-    password = models.CharField(max_length=150)
+    username = models.CharField(max_length=120, null=True)
+    password = models.CharField(max_length=150, null=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     age = models.PositiveIntegerField(validators=[MaxValueValidator(110)])
     city = models.CharField(max_length=120)
 
 
+class Subject(models.Model):
+    name = models.CharField(max_length=120,unique=True)
+    desc = models.TextField()
+
 class Question(models.Model):
+    subject = models.ForeignKey(Subject, related_name='subject')
     level = models.IntegerField()
     seq = models.IntegerField()
     text = models.CharField(max_length=360)
-    desc = models.CharField()
+    desc = models.TextField()
     correctAnswer = models.CharField(max_length=120)
     wrongAnswer1 = models.CharField(max_length=120)
     wrongAnswer2 = models.CharField(max_length=120)
@@ -46,14 +51,13 @@ class Answer(models.Model):
     user = models.ForeignKey(User, related_name='user')
     question = models.ForeignKey(Question, related_name='question')
     answer = models.IntegerField(choices=CHOICES)
-    is_idk = models.BooleanField(default=False)
-    is_correct = models.BooleanField(default=False)
 
 
 class Hospital(models.Model):
     name = models.CharField(max_length=120)
     city = models.CharField(max_length=120)
-    position = GeopositionField()
+    latitude = models.DecimalField(max_digits=9, decimal_places=6)
+    longitude = models.DecimalField(max_digits=9, decimal_places=6)
     ratingHygiene = models.FloatField()
     ratingStaff = models.FloatField()
     ratingFacilities = models.FloatField()

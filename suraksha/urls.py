@@ -15,7 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from rest_framework.routers import DefaultRouter
+
+from game.views import *
+
+router = DefaultRouter()
+router.register(r'users', UserView)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^select_subject/', SelectSubjectView.as_view(), name='select_subject'),
+    url(r'^get_questions/', LevelView.as_view(), name='get_question'),
 ]
+
+urlpatterns += router.urls
