@@ -12,10 +12,12 @@ body {
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+    color: white;
 }
 
 .question {
     margin-bottom: 25px;
+    color: white;
 }
 
 
