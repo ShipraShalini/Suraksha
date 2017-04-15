@@ -33,13 +33,13 @@ class LevelView(APIView):
         city = request.query_params.get('city')
         data = {}
         subject = Subject.objects.get(name=subject)
-        if level == 1:
-            data['level_desc'] = subject.desc
+        level = Level.objects.get(subject=subject, number=level)
+        data['level_desc'] = level.desc
         hospital = Hospital.objects.filter(city=city).values()[0]
         hospital['latitude'] = str(hospital['latitude'])
         hospital['longitude'] = str(hospital['longitude'])
         data['hospital'] = hospital
-        questions = Question.objects.filter(level=level, subject=subject).values()
+        questions = Question.objects.filter(level=level).values()
         data['questions'] = sorted(questions, key=lambda x: x['seq'])
         return Response(data, content_type='application/json', headers={'Access-Control-Allow-Origin': '*'})
 

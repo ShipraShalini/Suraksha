@@ -24,17 +24,19 @@ class User(models.Model):
 class Subject(models.Model):
     name = models.CharField(max_length=120,unique=True)
     desc = models.TextField()
-    # audio_url = models.URLField()
-
-
-class Levels(models.Model):
-    name = models.CharField(max_length=120, unique=True)
-    desc = models.TextField()
     audio_url = models.URLField()
 
-class Question(models.Model):
+
+class Level(models.Model):
+    number = models.IntegerField()
+    name = models.CharField(max_length=120, unique=True)
+    desc = models.TextField()
     subject = models.ForeignKey(Subject, related_name='subject')
-    level = models.IntegerField()
+    audio_url = models.URLField()
+
+
+class Question(models.Model):
+    level = models.ForeignKey(Level, related_name='level')
     seq = models.IntegerField()
     text = models.CharField(max_length=360)
     desc = models.TextField()

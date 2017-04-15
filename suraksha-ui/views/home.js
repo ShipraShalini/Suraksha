@@ -1,6 +1,3 @@
-/**
- * Created by ajmal on 15/4/17.
- */
 angular.module('suraksha').controller('homeControl',function ($scope,QuizService,$rootScope,$state) {
     $scope.city = '';
     $scope.age = 1;

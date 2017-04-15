@@ -1,6 +1,3 @@
-/**
- * Created by ajmal on 15/4/17.
- */
 angular.module('suraksha').controller('storyControl',function ($scope,QuizService,$state,$rootScope) {
     $rootScope.loading = true;
     console.log('Story JS');
