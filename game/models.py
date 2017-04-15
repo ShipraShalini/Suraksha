@@ -9,10 +9,10 @@ from geoposition.fields import GeopositionField
 
 class User(models.Model):
     GENDER_CHOICES = (
-        ('Female', 'Female'),
-        ('Male', 'Male'),
-        ('Other', 'Other'),
-        ('Unspecified', "Don't want to disclose")
+        ('female', 'Female'),
+        ('male', 'Male'),
+        ('other', 'Other'),
+        ('unspecified', "Don't want to disclose")
     )
     username = models.CharField(max_length=120, null=True)
     password = models.CharField(max_length=150, null=True)
@@ -24,6 +24,13 @@ class User(models.Model):
 class Subject(models.Model):
     name = models.CharField(max_length=120,unique=True)
     desc = models.TextField()
+    # audio_url = models.URLField()
+
+
+class Levels(models.Model):
+    name = models.CharField(max_length=120, unique=True)
+    desc = models.TextField()
+    audio_url = models.URLField()
 
 class Question(models.Model):
     subject = models.ForeignKey(Subject, related_name='subject')

@@ -29,36 +29,33 @@ class LevelView(APIView):
 
     def get(self, request,):
         subject = request.query_params.get('subject')
-        level = request.query_params.get('level')
+        level = int(request.query_params.get('level'))
         city = request.query_params.get('city')
         data = {}
         subject = Subject.objects.get(name=subject)
         if level == 1:
             data['level_desc'] = subject.desc
         hospital = Hospital.objects.filter(city=city).values()[0]
-        # data['hospital'] = hospital
         hospital['latitude'] = str(hospital['latitude'])
         hospital['longitude'] = str(hospital['longitude'])
         data['hospital'] = hospital
-        
-
         questions = Question.objects.filter(level=level, subject=subject).values()
         data['questions'] = sorted(questions, key=lambda x: x['seq'])
-        return Response(data, content_type='application/json')
+        return Response(data, content_type='application/json', headers={'Access-Control-Allow-Origin': '*'})
 
     def post(self, request):
-        user_id = request.data.get('userId')
-        questions = json.loads(request.data.get('questions'))
-
+        user_id = request.data.get('user')
         user = User.objects.get(id=user_id)
-
-        for question in questions:
-            question = Question.objects.get(id=question['id'])
+        response = request.data.get('response')
+        for question in response:
+            question_obj = Question.objects.get(id=question['id'])
+            print question
             data = {
                 'user': user,
-                'question': question,
-                'answer': question.answer
+                'question': question_obj,
+                'answer': question['response']
             }
-            Answer.objects.create(**data)
 
+            Answer.objects.create(**data)
+        return Response(status=200)
 

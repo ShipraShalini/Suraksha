@@ -25,7 +25,7 @@ router.register(r'users', UserView)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^select_subject/', SelectSubjectView.as_view(), name='select_subject'),
-    url(r'^get_questions/', LevelView.as_view(), name='get_question'),
+    url(r'^questions/', LevelView.as_view(), name='questions'),
 ]
 
 urlpatterns += router.urls
