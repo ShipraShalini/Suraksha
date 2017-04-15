@@ -8,9 +8,12 @@ angular.module('suraksha').controller('infoControl',function ($scope, QuizServic
 
 	$scope.playAudio = function() {
     	if($scope.answerStatus == 'correct'){
-            var audio = new Audio('audio/Correct-answer.mp3');
-        }else{
-            var audio = new Audio('audio/Correct-answer.mp3');
+			console.log('correct');
+            var audio = new Audio('audio/right_answer.wav');
+        }
+        else{
+			console.log('incorrect');
+            var audio = new Audio('audio/wrong_answer.wav');
 		}
         audio.play();
     };

@@ -50,4 +50,28 @@ suraksha.config(function ($stateProvider) {
                 templateUrl: "./views/score.html",
                 controller: 'scoreControl'
             })
+        .state('suraksha',
+        {
+            url: '/suraksha',
+            templateUrl: "./views/suraksha.html",
+            controller: 'surakshaControl'
+        })
+        .state('begins',
+        {
+            url: '/begins',
+            templateUrl: "./views/begins.html",
+            controller: 'beginsControl'
+        })
+        .state('instructions',
+        {
+            url: '/instructions',
+            templateUrl: "./views/instructions.html",
+            controller: 'instructionsControl'
+        })
+        .state('situation',
+        {
+            url: '/situation',
+            templateUrl: "./views/situation.html",
+            controller: 'situationControl'
+        })
 });
